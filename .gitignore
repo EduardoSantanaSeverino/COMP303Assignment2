@@ -461,3 +461,7 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/java,eclipse,java-web,visualstudio,visualstudiocode
+
+!Andrea_Eduardo_COMP303_Assignment2/.classpath
+!Andrea_Eduardo_COMP303_Assignment2/.project
+!Andrea_Eduardo_COMP303_Assignment2/.settings
