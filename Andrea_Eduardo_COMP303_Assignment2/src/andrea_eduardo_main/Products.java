@@ -22,7 +22,6 @@ public class Products implements Serializable {
 	private int price;
 	private int quantity;
 	private String category;
-	private String color;
 	private static final long serialVersionUID = 1L;
 
 	public Products() {
@@ -64,12 +63,6 @@ public class Products implements Serializable {
 	public void setCategory(String category) {
 		this.category = category;
 	}   
-	public String getColor() {
-		return this.color;
-	}
 
-	public void setColor(String color) {
-		this.color = color;
-	}
    
 }

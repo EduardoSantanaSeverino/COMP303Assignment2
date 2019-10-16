@@ -20,12 +20,15 @@ public class Orders implements Serializable {
 	private int customerId;
 	private int productId;
 	private String orderDate;
+	private String color;
+	private String comments;
 	private String status;
 	private int amountPaid;
 	private String credictCardNumber;
 	private String credictCardExpDate;
 	private String credictCardCode;
-	private String creadictCardName;
+	private String credictCardName;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Orders() {
@@ -96,12 +99,27 @@ public class Orders implements Serializable {
 	public void setCredictCardCode(String credictCardCode) {
 		this.credictCardCode = credictCardCode;
 	}   
-	public String getCreadictCardName() {
-		return this.creadictCardName;
+	public String getCredictCardName() {
+		return this.credictCardName;
 	}
 
-	public void setCreadictCardName(String creadictCardName) {
-		this.creadictCardName = creadictCardName;
+	public void setCredictCardName(String creadictCardName) {
+		this.credictCardName = creadictCardName;
 	}
    
+	public String getColor() {
+		return this.color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	public String getComments() {
+		return this.comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 }
