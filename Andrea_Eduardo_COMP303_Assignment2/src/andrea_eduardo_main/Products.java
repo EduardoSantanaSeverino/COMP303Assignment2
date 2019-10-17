@@ -17,6 +17,23 @@ import javax.persistence.*;
 public class Products implements Serializable {
 
 	
+	/**
+	 * @param productId
+	 * @param productName
+	 * @param price
+	 * @param quantity
+	 * @param category
+	 */
+	public Products(String productName, int price, int quantity, String category) {
+		super();
+		this.productName = productName;
+		this.price = price;
+		this.quantity = quantity;
+		this.category = category;
+		
+	
+	}
+
 	private int productId;
 	private String productName;
 	private int price;

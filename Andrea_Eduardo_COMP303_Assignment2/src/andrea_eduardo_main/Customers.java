@@ -27,6 +27,29 @@ public class Customers implements Serializable {
 	private String phone;
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param customerId
+	 * @param userName
+	 * @param password
+	 * @param firstname
+	 * @param lastname
+	 * @param address
+	 * @param city
+	 * @param postalCode
+	 * @param phone
+	 */
+	public Customers(String userName, String password, String firstname, String lastname,
+			String address, String city, String postalCode, String phone) {
+		this.userName = userName;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.address = address;
+		this.city = city;
+		this.postalCode = postalCode;
+		this.phone = phone;
+		
+	}
 	public Customers() {
 		super();
 	}   

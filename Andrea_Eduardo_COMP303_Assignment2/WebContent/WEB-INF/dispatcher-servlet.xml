@@ -22,5 +22,8 @@
 	<bean id="products" name="products" class="andrea_eduardo_main.Products"></bean>
 	<bean id="orders" name="orders" class="andrea_eduardo_main.Orders"></bean>
 
+	
+   
+    
     
 </beans>
