@@ -74,6 +74,9 @@
 														  </a>
 														</li>
 														<li class="nav-item">
+														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_order.html">Create New Order</a>
+														</li>
+														<li class="nav-item">
 														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_customer.html">View Update Customer</a>
 														</li>
 														<li class="nav-item">
