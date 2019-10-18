@@ -42,16 +42,12 @@ public class AccountsController {
 		if(isValid)
 		{
 			request.getSession().setAttribute("customerId", customer.getCustomerId());
-			view = new ModelAndView("home");
-			model =  sessionHelper.getLoggetUserViewModelByCustomerId(customer.getCustomerId());
+			return new ModelAndView("redirect:/home.html", new HashMap<>());
 		}
 		else
 		{
 			return new ModelAndView("redirect:/index.jsp", new HashMap<>());
 		}
-		
-		view.addObject("model", model);
-		return view;
 		
 	}
 	
@@ -77,9 +73,6 @@ public class AccountsController {
 		if(isValid)
 		{
 			request.getSession().setAttribute("customerId", customer.getCustomerId());
-			
-			//Object model = sessionHelper.getLoggetUserViewModelByCustomerId(customer.getCustomerId());
-			
 			return new ModelAndView("redirect:/home.html", new HashMap<>());
 			
 		}
