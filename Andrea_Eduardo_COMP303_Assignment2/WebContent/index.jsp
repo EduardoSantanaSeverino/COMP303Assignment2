@@ -14,19 +14,17 @@
     <meta name="author" content="Andrea / Eduardo">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> 
 	<!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="css/all.min.css">  	
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.min.css">  	
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -40,7 +38,7 @@
 	<div class="md-form">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 offset-md-3">
+				<div class="layout1 col-md-6 offset-md-3">
 					<div class="panel panel-login">
 						<div class="logo-top">
 							<a href="#"><img src="images/logo.png" alt="" /></a>
@@ -56,10 +54,12 @@
 								<div class="or">OR</div>
 							</div>
 						</div>
+					
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
 									<form id="login-form" action="${pageContext.request.contextPath}/accounts/login.html" method="post" role="form" style="display: block;">
+										
 										<div class="form-group">
 											<label class="icon-lp"><i class="fas fa-user-tie"></i></label>
 											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="">
@@ -93,14 +93,57 @@
 											</div>
 										</div>
 									</form>
+									
 									<form id="register-form" action="${pageContext.request.contextPath}/accounts/register.html" method="post" role="form" style="display: none;">
+										
+										<div class="row">
+											<div class="col-md-6">
+											<div class="form-group">
+												<label class="icon-lp"><i class="fas fa-user-tie"></i></label>
+												<input type="text" name="firstname" id="firstname" tabindex="1" class="form-control" placeholder="Firstname" value="" required="">
+											</div>
+											</div>
+											<div class="col-md-6">
+											<div class="form-group">
+												<label class="icon-lp"><i class="fas fa-user-tie"></i></label>
+												<input type="text" name="lastname" id="lastname" tabindex="1" class="form-control" placeholder="Lastname" value="" required="">
+											</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="icon-lp"><i class="fas fa-envelope"></i></label>
+													<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required="">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="icon-lp"><i class="fas fa-map-marked-alt"></i></label>
+													<input type="text" name="address" id="address" tabindex="1" class="form-control" placeholder="Address" value="" required="">
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="icon-lp"><i class="fas fa-building"></i></label>
+													<input type="text" name="city" id="city" tabindex="1" class="form-control" placeholder="City" value="" required="">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="icon-lp"><i class="fas fa-qrcode"></i></label>
+													<input type="text" name="postalCode" id="postalCode" tabindex="1" class="form-control" placeholder="Postal Code" value="" required="">
+												</div>
+											</div>
+										</div>
+										
 										<div class="form-group">
 											<label class="icon-lp"><i class="fas fa-user-tie"></i></label>
 											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="">
-										</div>
-										<div class="form-group">
-											<label class="icon-lp"><i class="fas fa-envelope"></i></label>
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required="">
 										</div>
 										<div class="form-group">
 											<label class="icon-lp"><i class="fas fa-key"></i></label>
@@ -151,7 +194,12 @@
 				$("#login-form").delay(100).fadeIn(100);
 				$("#register-form").fadeOut(100);
 				$('#register-form-link').removeClass('active');
+				$('.or').removeClass('add-to-or');
 				$(this).addClass('active');
+				$('.layout1').removeClass('col-md-10');
+				$('.layout1').removeClass('offset-md-1');
+				$('.layout1').addClass('col-md-6');
+				$('.layout1').addClass('offset-md-3');
 				e.preventDefault();
 			});
 
@@ -159,6 +207,11 @@
 				$("#register-form").delay(100).fadeIn(100);
 				$("#login-form").fadeOut(100);
 				$('#login-form-link').removeClass('active');
+				$('.or').addClass('add-to-or');
+				$('.layout1').addClass('col-md-10');
+				$('.layout1').addClass('offset-md-1');
+				$('.layout1').removeClass('col-md-6');
+				$('.layout1').removeClass('offset-md-3');
 				$(this).addClass('active');
 				e.preventDefault();
 			});

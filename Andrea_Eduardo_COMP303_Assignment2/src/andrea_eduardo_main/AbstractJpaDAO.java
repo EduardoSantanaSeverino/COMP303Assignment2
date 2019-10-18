@@ -49,7 +49,9 @@ public abstract class AbstractJpaDAO<T extends Serializable> {
     }
 
     public T create(final T entity) {
+    	entityManager.getTransaction().begin();
         entityManager.persist(entity);
+        entityManager.getTransaction().commit();
         return entity;
     }
 

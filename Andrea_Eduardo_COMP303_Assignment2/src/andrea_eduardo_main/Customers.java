@@ -16,15 +16,19 @@ import javax.persistence.*;
 @Entity
 public class Customers implements Serializable {
 	
+	@Id  
+	@GeneratedValue
 	private int customerId;
-	private String userName;
+	
+	private String username;
 	private String password;
 	private String firstname;
 	private String lastname;
 	private String address;
 	private String city;
 	private String postalCode;
-	private String phone;
+	private String email;
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,22 +42,23 @@ public class Customers implements Serializable {
 	 * @param postalCode
 	 * @param phone
 	 */
-	public Customers(String userName, String password, String firstname, String lastname,
-			String address, String city, String postalCode, String phone) {
-		this.userName = userName;
+	public Customers(String username, String password, String firstname, String lastname,
+			String address, String city, String postalCode, String email) {
+		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;
 		this.city = city;
 		this.postalCode = postalCode;
-		this.phone = phone;
+		this.email = email;
 		
 	}
+	
 	public Customers() {
 		super();
 	}   
-	@Id    
+	  
 	public int getCustomerId() {
 		return this.customerId;
 	}
@@ -62,11 +67,11 @@ public class Customers implements Serializable {
 		this.customerId = customerId;
 	}   
 	public String getUserName() {
-		return this.userName;
+		return this.username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}   
 	public String getPassword() {
 		return this.password;
@@ -110,12 +115,18 @@ public class Customers implements Serializable {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}   
-	public String getPhone() {
-		return this.phone;
+	
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-   
 }

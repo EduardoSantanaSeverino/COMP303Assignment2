@@ -5,6 +5,8 @@ package andrea_eduardo_main;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -26,7 +28,12 @@ public class CustomersDao extends AbstractJpaDAO<Customers> {
 	@SuppressWarnings("unchecked")
     public Customers findByUserNameAndPassword(String userName, String password) {
 		
-		List<Customers> l = entityManager.createQuery("select o from " + clazz.getName() + " o where o.username = '" + userName + "'").getResultList();
+		Query query = entityManager.createQuery("select c from " + clazz.getName() + " c where c.username = :un and c.password = :pw");
+		
+		query.setParameter("un", userName);
+		query.setParameter("pw", password);
+		
+		List<Customers> l = query.getResultList();
 		
 		if(l != null && !l.isEmpty()) {
 			return this.findOne(l.get(0).getCustomerId());
