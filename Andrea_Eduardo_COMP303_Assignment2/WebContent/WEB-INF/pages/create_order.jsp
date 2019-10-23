@@ -90,23 +90,38 @@
 													</div>
 												  </nav>
 
-											<form>
+											<form action="${pageContext.request.contextPath}/create_order.html" method="post" role="form" > 
+											
+<!--
+@RequestParam(value = "customerId", required = true) int customerId,
+@RequestParam(value = "productId", required = true) int productId,
+@RequestParam(value = "orderDate", required = true) String orderDate,
+@RequestParam(value = "color", required = true) String color,
+@RequestParam(value = "comments", required = true) String comments,
+@RequestParam(value = "status", required = true) String status,
+@RequestParam(value = "amountPaid", required = true) int amountPaid,
+@RequestParam(value = "credictCardNumber", required = true) String credictCardNumber,
+@RequestParam(value = "credictCardExpDate", required = true) String credictCardExpDate,
+@RequestParam(value = "credictCardCode", required = true) String credictCardCode,
+@RequestParam(value = "credictCardName", required = true) String credictCardName,
+ -->
                                             <div class="card order-product" style="display: block;">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Create or Update Order</h5>
-                                                    <h6 class="card-subtitle mb-2 text-muted">Create or update page is intended to a create new order and manage the created orders.</h6>
+                                                    <h5 class="card-title">Create Order</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">Create order page is intended to a create new order and manage the creations orders.</h6>
                                                     <div class="card-text">
                                                       	
-															<input type="hidden" id="custId" name="orderId" value="666">
-															<input type="hidden" id="custId" name="customerId" value="666">
-															<input type="hidden" id="custId" name="orderDate" value="666">
+															<input type="hidden" name="customerId" value="666">
+															<input type="hidden" class="orderDate" name="orderDate" value="666">
+															<input type="hidden" class="status" name="status" value="666">
+															<input type="hidden" class="amountPaid" name="amountPaid" value="666">
 															
 															<div class="row">
 
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="orderDate">Date</label>
-																		<input readonly disabled type="text" name="orderDate" class="form-control" id="orderDate" value="2019-01-01">
+																		<input readonly disabled type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="">
 																	</div>
 																</div>
 																<div class="col-md-6">
@@ -121,10 +136,10 @@
                                                             <div class="form-group">
                                                                 <label for="productId">Select Product</label>
                                                                 <select class="form-control" id="productId" name="productId">
-                                                                    <option value="1">Drinks \ Coca cola </option>
-																	<option value="2" selected>Drinks \ Pepsi </option>
-																	<option value="3">Hotfood \ Pizza </option>
-                                                                    <option value="4">Hotfood \ Hotdogs </option>
+                                                                    <option value="1" data-price="9" selected>Drinks \ Coca cola \ 9 CAD</option>
+																	<option value="2" data-price="16">Drinks \ Pepsi \ 16 CAD </option>
+																	<option value="3" data-price="26">Hotfood \ Pizza \ 26 CAD</option>
+                                                                    <option value="4" data-price="22">Hotfood \ Hotdogs \ 22 CAD</option>
                                                                 </select>
 															</div>
 															
@@ -145,7 +160,7 @@
                                                             <div class="form-group">
 
 																<label for="amountPaid">Amount Paid</label>
-																<input readonly disabled type="text" name="amountPaid" class="form-control" id="amountPaid" value="0">
+																<input readonly disabled type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="9">
 															
 															</div>
 
@@ -163,7 +178,7 @@
 														<div class="card-text">
 														  
 																<!-- 										
-																private String credictCardNumber;
+																private String creditCardNumber;
 																private String credictCardExpDate;
 																private String credictCardCode;
 																private String credictCardName; -->
@@ -173,7 +188,7 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="orderDate">Date</label>
-																			<input readonly disabled type="text" name="orderDate" class="form-control" id="orderDate" value="2019-01-01">
+																			<input readonly disabled type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="2019-01-01">
 																		</div>
 																	</div>
 
@@ -189,35 +204,35 @@
 																<div class="form-group">
 
 																	<label for="amountPaid">Amount Paid</label>
-																	<input readonly disabled type="text" name="amountPaid" class="form-control" id="amountPaid" value="0">
+																	<input readonly disabled type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="0">
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardName">Credict Card Name</label>
-																	<input type="text" name="credictCardName" class="form-control" id="credictCardName" required="" min="1" max="256" placeholder="Credict Card Name">
+																	<label for="credictCardName">Credit Card Name</label>
+																	<input type="text" name="credictCardName" class="form-control" id="credictCardName" required="" maxlength="256" placeholder="Credit Card Name">
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardNumber">Credict Card Number</label>
-																	<input type="text" name="credictCardNumber" class="form-control" id="credictCardNumber" required="" min="16" max="16" placeholder="Credict Card Number">
+																	<label for="credictCardNumber">Credit Card Number</label>
+																	<input type="number" name="credictCardNumber" class="form-control" id="credictCardNumber" required="" maxlength="16" placeholder="Credit Card Number">
 																
 																</div>
 															
 																<div class="form-group">
 
-																	<label for="credictCardExpDate">Credict Card Expiration Date</label>
-																	<input type="number" name="credictCardExpDate" class="form-control" id="credictCardExpDate" required="" min="4" max="4" placeholder="MMYY" >
+																	<label for="credictCardExpDate">Credit Card Expiration Date</label>
+																	<input type="number" name="credictCardExpDate" class="form-control" id="credictCardExpDate" required="" maxlength="4" placeholder="MMYY" >
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardCode">Credict Card Code</label>
-																	<input type="number" name="credictCardCode" class="form-control" id="credictCardCode" required="" min="3" max="3" placeholder="Code">
+																	<label for="credictCardCode">Credit Card Code</label>
+																	<input type="number" name="credictCardCode" class="form-control" id="credictCardCode" required="" maxlength="3" placeholder="Code">
 																
 																</div>
 																
@@ -254,6 +269,7 @@
 	<script type="text/javascript">
 		$(function() {
 
+			
 			$('.next-to-checkout').click(function(e) {
 				$(".order-checkout").delay(100).fadeIn(100);
 				$(".order-product").fadeOut(100);
@@ -266,6 +282,24 @@
 				e.preventDefault();
 			});
 			
+			$( "#productId" ).change(function() {
+			  
+			  var productPrice = $("#productId").find(':selected').data('price');
+			  $(".amountPaid").val(productPrice);
+			  
+			});
+			
+			$(".orderDate").val(getFormatedCurrentDate());
+			
+			function getFormatedCurrentDate()
+			{
+				var d = new Date();
+				var curr_date = d.getDate();
+				var curr_month = d.getMonth();
+				curr_month++;
+				var curr_year = d.getFullYear();
+				return curr_year + "/" + curr_month + "/" + curr_date;
+			}
 		});
 	
 	</script>

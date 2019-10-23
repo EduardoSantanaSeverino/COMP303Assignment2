@@ -122,4 +122,44 @@ public class Orders implements Serializable {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
+	/**
+	 * @param customerId
+	 * @param productId
+	 * @param orderDate
+	 * @param color
+	 * @param comments
+	 * @param status
+	 * @param amountPaid
+	 * @param credictCardNumber
+	 * @param credictCardExpDate
+	 * @param credictCardCode
+	 * @param credictCardName
+	 */
+	public Orders(int customerId, 
+			int productId, 
+			String orderDate, 
+			String color, 
+			String comments, 
+			String status,
+			int amountPaid, 
+			String credictCardNumber, 
+			String credictCardExpDate, 
+			String credictCardCode,
+			String credictCardName) {
+		super();
+		this.customerId = customerId;
+		this.productId = productId;
+		this.orderDate = orderDate;
+		this.color = color;
+		this.comments = comments;
+		this.status = status;
+		this.amountPaid = amountPaid;
+		this.credictCardNumber = credictCardNumber;
+		this.credictCardExpDate = credictCardExpDate;
+		this.credictCardCode = credictCardCode;
+		this.credictCardName = credictCardName;
+	}
+	
+	
 }
