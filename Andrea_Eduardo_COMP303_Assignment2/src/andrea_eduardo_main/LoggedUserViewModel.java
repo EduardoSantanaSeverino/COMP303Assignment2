@@ -24,19 +24,20 @@ public class LoggedUserViewModel {
 		this.user = user;
 	}
 	/**
-	 * @return the orders
+	 * @return the orderList
 	 */
-	public List<Orders> getOrders() {
-		return orders;
+	public List<Orders> getOrderList() {
+		return orderList;
 	}
 	/**
-	 * @param orders the orders to set
+	 * @param orderList the orderList to set
 	 */
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
+	public void setOrderList(List<Orders> orders) {
+		this.orderList = orders;
 	}
 	private Customers user;
-	private List<Orders> orders;
+	private List<Orders> orderList;
+	
 	/**
 	 * 
 	 */

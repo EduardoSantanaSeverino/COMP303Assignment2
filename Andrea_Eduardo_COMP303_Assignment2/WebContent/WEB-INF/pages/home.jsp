@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
@@ -102,9 +103,9 @@
 											</thead>
 											<tbody>
 											
-												<c:forEach var="order" items="${model.orders}">   
+												<c:forEach var="order" items="${model.orderList}">   
 												   <tr>  
-												   <td>${order.orderNo}</td>  
+												   <td>${order.orderId} </td>  
 												   <td>${order.orderDate}</td>  
 												   <td>${order.status}</td>  
 												   <td>${order.amountPaid}</td>  

@@ -13,7 +13,6 @@ public class LoginViewModel {
 	private String password;
 	private String error;
 	
-	
 	/**
 	 * @param username
 	 * @param password

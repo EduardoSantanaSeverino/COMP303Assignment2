@@ -48,7 +48,7 @@ public class SessionHelper {
 			List<Orders> orders = ordersDao.getListByCustomerId(customerId);
 			
 			retVal.setUser(customer);
-			retVal.setOrders(orders);
+			retVal.setOrderList(orders);
 			
 		}
 		return retVal;
