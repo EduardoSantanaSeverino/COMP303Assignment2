@@ -88,33 +88,53 @@
 													</div>
 												  </nav>
 
-										<div class="alert alert-danger" role="alert">
-											You don't have orders jet! Please go shopping! from <a href="#">here</a>
-										</div>
+										<c:if test="${!empty error_message}">
+											<div class="alert alert-danger" role="alert">
+												${error_message}
+											</div>
+										</c:if>
+										
+										<c:if test="${!empty info_message}">
+											<div class="alert alert-success" role="alert">
+												${info_message}
+											</div>
+										</c:if>
+										
+										<c:if test="${!show_orders}">
+											<div class="alert alert-danger" role="alert">
+												You don't have orders yet! Please go shopping! from <a href="${pageContext.request.contextPath}/create_order.html">here</a>
+											</div>
+										</c:if>
 
-										<table class="table table-bordered table-hover table-striped">
-											<thead>
-											  <tr>
-												<th scope="col">#</th>
-												<th scope="col">Date</th>
-												<th scope="col">Status</th>
-												<th scope="col">Amount</th>
-											  </tr>
-											</thead>
-											<tbody>
+										<c:if test="${show_orders}">
+												<table class="table table-bordered table-hover table-striped">
+												<thead>
+												  <tr>
+													<th scope="col">#</th>
+													<th scope="col">Date</th>
+													<th scope="col">Status</th>
+													<th scope="col">Amount</th>
+													<th scope="col" style="width: 15px;"></th>
+												  </tr>
+												</thead>
+												<tbody>
+												
+													<c:forEach var="order" items="${model.orderList}">   
+													   <tr>  
+													   <td>${order.orderId} </td>  
+													   <td>${order.orderDate}</td>  
+													   <td>${order.status}</td>  
+													   <td>${order.amountPaid}</td>  
+													   <td>   <a class="btn btn-primary" href="${pageContext.request.contextPath}/edit_order.html?id=${order.orderId}">Edit</a> </td>  
+													   </tr>  
+													</c:forEach>  
+													   
+												</tbody>
+											  </table>
 											
-												<c:forEach var="order" items="${model.orderList}">   
-												   <tr>  
-												   <td>${order.orderId} </td>  
-												   <td>${order.orderDate}</td>  
-												   <td>${order.status}</td>  
-												   <td>${order.amountPaid}</td>  
-												   </tr>  
-												</c:forEach>  
-												   
-											</tbody>
-										  </table>
+										</c:if>
 
+									
 									</div>
 								</div>
 							</div>

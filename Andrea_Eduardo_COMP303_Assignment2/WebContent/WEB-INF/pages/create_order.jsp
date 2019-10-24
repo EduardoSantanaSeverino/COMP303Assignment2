@@ -70,12 +70,17 @@
 												  
 													<div class="collapse navbar-collapse" id="navbarSupportedContent">
 													  <ul class="navbar-nav mr-auto">
-														<li class="nav-item active">
+														<li class="nav-item ">
 														  <a class="nav-link" href="${pageContext.request.contextPath}/home.html">
-														  	<i class="fa fa-home"></i> Home <span class="sr-only">(current)</span>
+														  	<i class="fa fa-home"></i> Home 
 														  </a>
 														</li>
 														
+														<li class="nav-item active">
+														  <a class="nav-link" href="#">
+														  	Create New Order <span class="sr-only">(current)</span>
+														  </a>
+														</li>
 														
 														<li class="nav-item">
 														  <a class="nav-link" href="#">${model.user.firstname} ${model.user.lastname} </a>
@@ -89,7 +94,7 @@
 											
                                             <div class="card order-product" style="display: block;">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Create Order</h5>
+                                                    <h5 class="card-title">Create New Order</h5>
                                                     <h6 class="card-subtitle mb-2 text-muted">Create order page is intended to a create new order and manage the creations orders.</h6>
                                                     <div class="card-text">
                                                       	
@@ -269,8 +274,18 @@
 				var curr_month = d.getMonth();
 				curr_month++;
 				var curr_year = d.getFullYear();
-				return curr_year + "-" + curr_month + "-" + curr_date;
+				var hours = d.getHours();
+				var minutes = d.getMinutes();
+				var seconds = d.getSeconds();
+				return curr_year + "-" + pad(curr_month, 2) + "-" +  pad(curr_date,2) + "  " +  pad(hours,2) + ":" +  pad(minutes,2) + ":" +  pad(seconds,2);
 			}
+			
+			function pad(n, width, z) {
+			  z = z || '0';
+			  n = n + '';
+			  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+			}
+		
 		});
 	
 	</script>

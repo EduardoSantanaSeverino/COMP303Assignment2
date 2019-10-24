@@ -33,9 +33,18 @@ public class HomeController {
 		{
 			return new ModelAndView("redirect:/", new HashMap<>());
 		}
+		
+		boolean show_orders = model.getOrderList().size() > 0;
+		String error_message = sessionHelper.getErrorMessage(request);
+		String info_message = sessionHelper.getInfoMessage(request);
+		
 		ModelAndView view = null;
 		view = new ModelAndView("home");
 		view.addObject("model", model);
+		view.addObject("show_orders", show_orders);
+		view.addObject("error_message", error_message);
+		view.addObject("info_message", info_message);
+		
 		return view;
 	}
 	

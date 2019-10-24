@@ -70,9 +70,15 @@
 												  
 													<div class="collapse navbar-collapse" id="navbarSupportedContent">
 													  <ul class="navbar-nav mr-auto">
-														<li class="nav-item active">
+														<li class="nav-item">
 														  <a class="nav-link" href="${pageContext.request.contextPath}/home.html">
-														  	<i class="fa fa-home"></i> Home <span class="sr-only">(current)</span>
+														  	<i class="fa fa-home"></i> Home
+														  </a>
+														</li>
+														
+														<li class="nav-item active">
+														  <a class="nav-link" href="#">
+														  	Update Customer <span class="sr-only">(current)</span>
 														  </a>
 														</li>
 														

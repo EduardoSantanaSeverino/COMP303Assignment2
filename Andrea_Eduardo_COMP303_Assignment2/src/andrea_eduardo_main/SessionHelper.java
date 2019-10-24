@@ -38,6 +38,20 @@ public class SessionHelper {
 		return retVal;
 		
 	}
+	
+	public String getErrorMessage(HttpServletRequest request)
+	{
+		Object retVal = request.getSession().getAttribute("error_message");
+		request.getSession().setAttribute("error_message", "");
+		return String.valueOf(retVal);
+	}
+	
+	public String getInfoMessage(HttpServletRequest request)
+	{
+		Object retVal = request.getSession().getAttribute("info_message");
+		request.getSession().setAttribute("info_message", "");
+		return String.valueOf(retVal);
+	}
 
 	public LoggedUserViewModel getLoggetUserViewModelByCustomerId(int customerId)
 	{

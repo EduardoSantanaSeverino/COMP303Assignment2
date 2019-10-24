@@ -70,49 +70,50 @@
 												  
 													<div class="collapse navbar-collapse" id="navbarSupportedContent">
 													  <ul class="navbar-nav mr-auto">
+														<li class="nav-item">
+														  <a class="nav-link" href="${pageContext.request.contextPath}/home.html">
+														  	<i class="fa fa-home"></i> Home
+														  </a>
+														</li>
+														
 														<li class="nav-item active">
 														  <a class="nav-link" href="#">
-														  	<i class="fa fa-home"></i> Home <span class="sr-only">(current)</span>
+														  	 Edit Order <span class="sr-only">(current)</span>
 														  </a>
 														</li>
 														
 														<li class="nav-item">
-														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_order.html">Create New Order</a>
-														</li>
-														<li class="nav-item">
-														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_customer.html">View Update Customer</a>
-														</li>
-														<li class="nav-item">
-														  <a class="nav-link" href="#">${model.user.firstname}</a>
+														  <a class="nav-link" href="#">${model.user.firstname} ${model.user.lastname} </a>
 														</li>
 														
 													  </ul>
 													</div>
 												  </nav>
 
-											<form>
+											<form action="${pageContext.request.contextPath}/order/edit.html" method="post" role="form" > 
+											
                                             <div class="card order-product" style="display: block;">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Create or Update Order</h5>
-                                                    <h6 class="card-subtitle mb-2 text-muted">Create or update page is intended to a create new order and manage the created orders.</h6>
+                                                    <h5 class="card-title">Edit Order</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">Edit order page is intended to a Edit order and manage the Edit orders.</h6>
                                                     <div class="card-text">
                                                       	
-															<input type="hidden" id="custId" name="orderId" value="666">
-															<input type="hidden" id="custId" name="customerId" value="666">
-															<input type="hidden" id="custId" name="orderDate" value="666">
+															<input type="hidden" name="customerId" value="${model.user.customerId}">
 															
+															<input type="hidden" name="orderId" value="${order.orderId}">
+														
 															<div class="row">
 
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="orderDate">Date</label>
-																		<input readonly disabled type="text" name="orderDate" class="form-control" id="orderDate" value="2019-01-01">
+																		<input readonly type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="${order.orderDate}">
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="Status">Status</label>
-																		<input readonly disabled type="text" name="status" class="form-control" id="Status" value="Creating">
+																		<input readonly type="text" name="status" class="form-control" id="Status" value="Updating">
 																	</div>
 																</div>
 															
@@ -121,31 +122,31 @@
                                                             <div class="form-group">
                                                                 <label for="productId">Select Product</label>
                                                                 <select class="form-control" id="productId" name="productId">
-                                                                    <option value="1">Drinks \ Coca cola </option>
-																	<option value="2" selected>Drinks \ Pepsi </option>
-																	<option value="3">Hotfood \ Pizza </option>
-                                                                    <option value="4">Hotfood \ Hotdogs </option>
+                                                                    <option value="1" data-price="9" selected>Drinks \ Coca cola \ 9 CAD</option>
+																	<option value="2" data-price="16">Drinks \ Pepsi \ 16 CAD </option>
+																	<option value="3" data-price="26">Hotfood \ Pizza \ 26 CAD</option>
+                                                                    <option value="4" data-price="22">Hotfood \ Hotdogs \ 22 CAD</option>
                                                                 </select>
 															</div>
 															
 															<div class="form-group">
 																<label for="color">Select Color</label>
 																<select class="form-control" id="color" name="color">
-																	<option value="Red">Red</option>
-																	<option value="Yellow" selected>Yellow</option>
-																	<option value="Blue">Blue</option>
+																	<option value="Red" ${( order.color == "Red" ? "selected" : "" )}>Red</option>
+																	<option value="Yellow" ${( order.color == "Yellow" ? "selected" : "" )}>Yellow</option>
+																	<option value="Blue" ${( order.color == "Blue" ? "selected" : "" )}>Blue</option>
 																</select>
 															</div>
 															
                                                             <div class="form-group">
                                                                 <label for="comments">Comments</label>
-                                                                <textarea class="form-control" id="comments" rows="3" name="comments"></textarea>
+                                                                <textarea class="form-control" id="comments" rows="3" name="comments">${order.comments}</textarea>
 															</div>
 															
                                                             <div class="form-group">
 
 																<label for="amountPaid">Amount Paid</label>
-																<input readonly disabled type="text" name="amountPaid" class="form-control" id="amountPaid" value="0">
+																<input readonly type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="${order.amountPaid}">
 															
 															</div>
 
@@ -162,25 +163,19 @@
 														<h6 class="card-subtitle mb-2 text-muted">Create or update page is intended to a create new order and manage the created orders.</h6>
 														<div class="card-text">
 														  
-																<!-- 										
-																private String credictCardNumber;
-																private String credictCardExpDate;
-																private String credictCardCode;
-																private String credictCardName; -->
-															
 																<div class="row">
 	
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="orderDate">Date</label>
-																			<input readonly disabled type="text" name="orderDate" class="form-control" id="orderDate" value="2019-01-01">
+																			<input readonly type="text" class="form-control orderDate" value="${order.orderDate}">
 																		</div>
 																	</div>
 
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="Status">Status</label>
-																			<input readonly disabled type="text" name="status" class="form-control" id="Status" value="Checkout">
+																			<input readonly type="text" class="form-control" value="Checkout" value="Updating">
 																		</div>
 																	</div>
 																
@@ -189,35 +184,35 @@
 																<div class="form-group">
 
 																	<label for="amountPaid">Amount Paid</label>
-																	<input readonly disabled type="text" name="amountPaid" class="form-control" id="amountPaid" value="0">
+																	<input readonly type="text" class="form-control amountPaid" value="${order.amountPaid}">
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardName">Credict Card Name</label>
-																	<input type="text" name="credictCardName" class="form-control" id="credictCardName" required="" min="1" max="256" placeholder="Credict Card Name">
+																	<label for="credictCardName">Credit Card Name</label>
+																	<input value="${order.credictCardName}" type="text" name="credictCardName" class="form-control" id="credictCardName" required="" maxlength="256" placeholder="Credit Card Name" >
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardNumber">Credict Card Number</label>
-																	<input type="text" name="credictCardNumber" class="form-control" id="credictCardNumber" required="" min="16" max="16" placeholder="Credict Card Number">
+																	<label for="credictCardNumber">Credit Card Number</label>
+																	<input value="${order.credictCardNumber}" type="number" name="credictCardNumber" class="form-control" id="credictCardNumber" required="" maxlength="16" placeholder="Credit Card Number">
 																
 																</div>
 															
 																<div class="form-group">
 
-																	<label for="credictCardExpDate">Credict Card Expiration Date</label>
-																	<input type="number" name="credictCardExpDate" class="form-control" id="credictCardExpDate" required="" min="4" max="4" placeholder="MMYY" >
+																	<label for="credictCardExpDate">Credit Card Expiration Date</label>
+																	<input value="${order.credictCardExpDate}" type="number" name="credictCardExpDate" class="form-control" id="credictCardExpDate" required="" maxlength="4" placeholder="MMYY" >
 																
 																</div>
 																
 																<div class="form-group">
 
-																	<label for="credictCardCode">Credict Card Code</label>
-																	<input type="number" name="credictCardCode" class="form-control" id="credictCardCode" required="" min="3" max="3" placeholder="Code">
+																	<label for="credictCardCode">Credit Card Code</label>
+																	<input value="${order.credictCardCode}" type="number" name="credictCardCode" class="form-control" id="credictCardCode" required="" maxlength="3" placeholder="Code">
 																
 																</div>
 																
@@ -254,6 +249,7 @@
 	<script type="text/javascript">
 		$(function() {
 
+			
 			$('.next-to-checkout').click(function(e) {
 				$(".order-checkout").delay(100).fadeIn(100);
 				$(".order-product").fadeOut(100);
@@ -266,6 +262,32 @@
 				e.preventDefault();
 			});
 			
+			$( "#productId" ).change(function() {
+			  var productPrice = $("#productId").find(':selected').data('price');
+			  $(".amountPaid").val(productPrice);
+			});
+			
+			$(".orderDate").val(getFormatedCurrentDate());
+			
+			function getFormatedCurrentDate()
+			{
+				var d = new Date();
+				var curr_date = d.getDate();
+				var curr_month = d.getMonth();
+				curr_month++;
+				var curr_year = d.getFullYear();
+				var hours = d.getHours();
+				var minutes = d.getMinutes();
+				var seconds = d.getSeconds();
+				return curr_year + "-" + pad(curr_month, 2) + "-" +  pad(curr_date,2) + "  " +  pad(hours,2) + ":" +  pad(minutes,2) + ":" +  pad(seconds,2);
+			}
+			
+			function pad(n, width, z) {
+			  z = z || '0';
+			  n = n + '';
+			  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+			}
+		
 		});
 	
 	</script>
