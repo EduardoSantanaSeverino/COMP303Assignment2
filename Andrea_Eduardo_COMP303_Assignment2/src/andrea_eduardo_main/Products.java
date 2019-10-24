@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Entity
 public class Products implements Serializable {
 
-	
 	/**
 	 * @param productId
 	 * @param productName
@@ -30,10 +29,10 @@ public class Products implements Serializable {
 		this.price = price;
 		this.quantity = quantity;
 		this.category = category;
-		
-	
 	}
 
+	@Id  
+	@GeneratedValue
 	private int productId;
 	private String productName;
 	private int price;
@@ -44,7 +43,7 @@ public class Products implements Serializable {
 	public Products() {
 		super();
 	}   
-	@Id    
+  
 	public int getProductId() {
 		return this.productId;
 	}

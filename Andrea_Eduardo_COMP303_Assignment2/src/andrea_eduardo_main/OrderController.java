@@ -18,12 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-public class OrdersController {
+public class OrderController {
 
 	private SessionHelper sessionHelper = new SessionHelper();
 	private OrdersDao ordersDao = new OrdersDao();
 	
-	@RequestMapping(value = "create_order", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/create", method = RequestMethod.POST)
 	public ModelAndView create(
 			@RequestParam(value = "customerId", required = true) int customerId,
 			@RequestParam(value = "productId", required = true) int productId,
@@ -72,7 +72,11 @@ public class OrdersController {
 	public ModelAndView index(HttpServletRequest request)
 	{
 		ModelAndView view = null;
-		Object model = sessionHelper.getCustomerFromSession(request);
+		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
+		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
+		{
+			return new ModelAndView("redirect:/", new HashMap<>());
+		}
 		view = new ModelAndView("create_order");
 		view.addObject("model", model);
 		return view;

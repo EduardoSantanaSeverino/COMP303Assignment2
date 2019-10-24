@@ -16,6 +16,8 @@ import javax.persistence.*;
 @Entity
 public class Orders implements Serializable {
 	
+	@Id  
+	@GeneratedValue
 	private int orderId;
 	private int customerId;
 	private int productId;
@@ -35,7 +37,6 @@ public class Orders implements Serializable {
 		super();
 	}   
 	
-	@Id    
 	public int getOrderId() {
 		return this.orderId;
 	}
@@ -153,7 +154,7 @@ public class Orders implements Serializable {
 		this.orderDate = orderDate;
 		this.color = color;
 		this.comments = comments;
-		this.status = status;
+		this.status = "Created";
 		this.amountPaid = amountPaid;
 		this.credictCardNumber = credictCardNumber;
 		this.credictCardExpDate = credictCardExpDate;

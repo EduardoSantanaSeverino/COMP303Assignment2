@@ -19,9 +19,22 @@ public class TestAccessData {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
-		testInsert();
 		
+		SessionHelper sessionHelper = new SessionHelper();
+		
+		try
+		{
+			LoggedUserViewModel loginModel = sessionHelper.getLoggetUserViewModelByCustomerId(1);
+			LoggedUserViewModel loginModel2;
+			loginModel2 = null;
+		}
+		catch (Exception ex)
+		{
+			String me = ex.getMessage();
+			System.out.println(me);
+		}
+		
+		//testGetOrders();
 	}
 	
 	public static void testInsert()
@@ -55,7 +68,7 @@ public class TestAccessData {
 		
 		for(Orders item: l)
 		{
-			System.out.println(item.getComments());
+			System.out.println(item.getColor());
 		}
 		
 	}

@@ -71,63 +71,42 @@
 													<div class="collapse navbar-collapse" id="navbarSupportedContent">
 													  <ul class="navbar-nav mr-auto">
 														<li class="nav-item active">
-														  <a class="nav-link" href="#">
+														  <a class="nav-link" href="${pageContext.request.contextPath}/home.html">
 														  	<i class="fa fa-home"></i> Home <span class="sr-only">(current)</span>
 														  </a>
 														</li>
 														
+														
 														<li class="nav-item">
-														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_order.html">Create New Order</a>
-														</li>
-														<li class="nav-item">
-														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_customer.html">View Update Customer</a>
-														</li>
-														<li class="nav-item">
-														  <a class="nav-link" href="#">${model.user.firstname}</a>
+														  <a class="nav-link" href="#">${model.user.firstname} ${model.user.lastname} </a>
 														</li>
 														
 													  </ul>
 													</div>
 												  </nav>
 
-											<form action="${pageContext.request.contextPath}/create_order.html" method="post" role="form" > 
+											<form action="${pageContext.request.contextPath}/order/create.html" method="post" role="form" > 
 											
-<!--
-@RequestParam(value = "customerId", required = true) int customerId,
-@RequestParam(value = "productId", required = true) int productId,
-@RequestParam(value = "orderDate", required = true) String orderDate,
-@RequestParam(value = "color", required = true) String color,
-@RequestParam(value = "comments", required = true) String comments,
-@RequestParam(value = "status", required = true) String status,
-@RequestParam(value = "amountPaid", required = true) int amountPaid,
-@RequestParam(value = "credictCardNumber", required = true) String credictCardNumber,
-@RequestParam(value = "credictCardExpDate", required = true) String credictCardExpDate,
-@RequestParam(value = "credictCardCode", required = true) String credictCardCode,
-@RequestParam(value = "credictCardName", required = true) String credictCardName,
- -->
                                             <div class="card order-product" style="display: block;">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Create Order</h5>
                                                     <h6 class="card-subtitle mb-2 text-muted">Create order page is intended to a create new order and manage the creations orders.</h6>
                                                     <div class="card-text">
                                                       	
-															<input type="hidden" name="customerId" value="666">
-															<input type="hidden" class="orderDate" name="orderDate" value="666">
-															<input type="hidden" class="status" name="status" value="666">
-															<input type="hidden" class="amountPaid" name="amountPaid" value="666">
-															
+															<input type="hidden" name="customerId" value="${model.user.customerId}">
+														
 															<div class="row">
 
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="orderDate">Date</label>
-																		<input readonly disabled type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="">
+																		<input readonly type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="">
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label for="Status">Status</label>
-																		<input readonly disabled type="text" name="status" class="form-control" id="Status" value="Creating">
+																		<input readonly type="text" name="status" class="form-control" id="Status" value="Creating">
 																	</div>
 																</div>
 															
@@ -160,7 +139,7 @@
                                                             <div class="form-group">
 
 																<label for="amountPaid">Amount Paid</label>
-																<input readonly disabled type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="9">
+																<input readonly type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="9">
 															
 															</div>
 
@@ -177,25 +156,19 @@
 														<h6 class="card-subtitle mb-2 text-muted">Create or update page is intended to a create new order and manage the created orders.</h6>
 														<div class="card-text">
 														  
-																<!-- 										
-																private String creditCardNumber;
-																private String credictCardExpDate;
-																private String credictCardCode;
-																private String credictCardName; -->
-															
 																<div class="row">
 	
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="orderDate">Date</label>
-																			<input readonly disabled type="text" name="orderDate" class="form-control orderDate" id="orderDate" value="2019-01-01">
+																			<input readonly type="text" class="form-control orderDate">
 																		</div>
 																	</div>
 
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label for="Status">Status</label>
-																			<input readonly disabled type="text" name="status" class="form-control" id="Status" value="Checkout">
+																			<input readonly type="text" class="form-control" value="Checkout">
 																		</div>
 																	</div>
 																
@@ -204,7 +177,7 @@
 																<div class="form-group">
 
 																	<label for="amountPaid">Amount Paid</label>
-																	<input readonly disabled type="text" name="amountPaid" class="form-control amountPaid" id="amountPaid" value="0">
+																	<input readonly type="text" class="form-control amountPaid" value="0">
 																
 																</div>
 																
@@ -283,10 +256,8 @@
 			});
 			
 			$( "#productId" ).change(function() {
-			  
 			  var productPrice = $("#productId").find(':selected').data('price');
 			  $(".amountPaid").val(productPrice);
-			  
 			});
 			
 			$(".orderDate").val(getFormatedCurrentDate());
@@ -298,7 +269,7 @@
 				var curr_month = d.getMonth();
 				curr_month++;
 				var curr_year = d.getFullYear();
-				return curr_year + "/" + curr_month + "/" + curr_date;
+				return curr_year + "-" + curr_month + "-" + curr_date;
 			}
 		});
 	

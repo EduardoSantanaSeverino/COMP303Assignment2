@@ -26,8 +26,14 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request)
 	{
+		
+		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
+		
+		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
+		{
+			return new ModelAndView("redirect:/", new HashMap<>());
+		}
 		ModelAndView view = null;
-		Object model = sessionHelper.getCustomerFromSession(request);
 		view = new ModelAndView("home");
 		view.addObject("model", model);
 		return view;

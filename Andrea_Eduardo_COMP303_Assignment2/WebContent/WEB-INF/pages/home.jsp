@@ -69,7 +69,7 @@
 													<div class="collapse navbar-collapse" id="navbarSupportedContent">
 													  <ul class="navbar-nav mr-auto">
 														<li class="nav-item active">
-														  <a class="nav-link" href="#">
+														  <a class="nav-link" href="${pageContext.request.contextPath}/home.html">
 														  	<i class="fa fa-home"></i> Home <span class="sr-only">(current)</span>
 														  </a>
 														</li>
@@ -80,7 +80,7 @@
 														  <a class="nav-link" href="${pageContext.request.contextPath}/edit_customer.html">View Update Customer</a>
 														</li>
 														<li class="nav-item">
-														  <a class="nav-link" href="#">${model.user.firstname}</a>
+														  <a class="nav-link" href="#">${model.user.firstname} ${model.user.lastname}</a>
 														</li>
 														
 													  </ul>
@@ -95,31 +95,22 @@
 											<thead>
 											  <tr>
 												<th scope="col">#</th>
-												<th scope="col">First</th>
-												<th scope="col">Last</th>
-												<th scope="col">Handle</th>
+												<th scope="col">Date</th>
+												<th scope="col">Status</th>
+												<th scope="col">Amount</th>
 											  </tr>
 											</thead>
 											<tbody>
-											  <tr>
-												<th scope="row">1</th>
-												<td>
-													
-												</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											  </tr>
-											  <tr>
-												<th scope="row">2</th>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-											  </tr>
-											  <tr>
-												<th scope="row">3</th>
-												<td colspan="2">Larry the Bird</td>
-												<td>@twitter</td>
-											  </tr>
+											
+												<c:forEach var="order" items="${model.orders}">   
+												   <tr>  
+												   <td>${order.orderNo}</td>  
+												   <td>${order.orderDate}</td>  
+												   <td>${order.status}</td>  
+												   <td>${order.amountPaid}</td>  
+												   </tr>  
+												</c:forEach>  
+												   
 											</tbody>
 										  </table>
 
