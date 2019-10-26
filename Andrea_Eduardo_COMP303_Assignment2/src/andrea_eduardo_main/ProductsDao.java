@@ -28,19 +28,24 @@ public class ProductsDao extends AbstractJpaDAO<Products> {
 	{
 		List<Products> retVal = new ArrayList();
 		
-		retVal.add(new Products("Coca-Cola", 123, 1, "Drinks"));
+		retVal.add(new Products("Coca-Cola", 230, 1, "Drinks"));
 		retVal.add(new Products("Pepsi", 125, 1, "Drinks"));
-		retVal.add(new Products("Hotdog", 123, 1, "Hot food"));
-		retVal.add(new Products("Pizza", 125, 1, "Hot food"));
+		retVal.add(new Products("Hotdog", 652, 1, "Hot food"));
+		retVal.add(new Products("Pizza", 412, 1, "Hot food"));
 	
 		return retVal;
 	}
 	
 	public void seedDatabase()
 	{
-		for(Products item : this.getProductList())
+		List<Products> l = this.findAll();
+		
+		if(l == null || l.size() < 1) 
 		{
-			this.create(item);
+			for(Products item : this.getProductList())
+			{
+				this.create(item);
+			}	
 		}
 	}
 	

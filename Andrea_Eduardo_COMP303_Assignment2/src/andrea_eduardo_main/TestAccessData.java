@@ -20,6 +20,11 @@ public class TestAccessData {
 	 */
 	public static void main(String[] args) {
 		
+		testLoginUser();
+	}
+	
+	public static void testOther()
+	{
 		SessionHelper sessionHelper = new SessionHelper();
 		
 		try
@@ -34,7 +39,6 @@ public class TestAccessData {
 			System.out.println(me);
 		}
 		
-		//testGetOrders();
 	}
 	
 	public static void testInsert()
@@ -70,6 +74,14 @@ public class TestAccessData {
 		{
 			System.out.println(item.getColor());
 		}
+		
+	}
+	
+	public static void testLoginUser()
+	{
+		CustomersDao customersDao = new CustomersDao();
+		Customers customer = customersDao.findByUserNameAndPassword("asdf4", "asdf4");
+		boolean isValid = customer != null;
 		
 	}
 }

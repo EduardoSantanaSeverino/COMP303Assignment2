@@ -2,7 +2,11 @@ package andrea_eduardo_main;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  * Entity implementation class for Entity: Orders
@@ -26,6 +30,7 @@ public class Orders implements Serializable {
 	private String comments;
 	private String status;
 	private int amountPaid;
+	private LocalDateTime createdAt;
 	private String credictCardNumber;
 	private String credictCardExpDate;
 	private String credictCardCode;
@@ -35,6 +40,7 @@ public class Orders implements Serializable {
 
 	public Orders() {
 		super();
+		this.setCreatedAt(LocalDateTime.now());
 	}   
 	
 	public int getOrderId() {
@@ -160,7 +166,21 @@ public class Orders implements Serializable {
 		this.credictCardExpDate = credictCardExpDate;
 		this.credictCardCode = credictCardCode;
 		this.credictCardName = credictCardName;
+		this.setCreatedAt(LocalDateTime.now());
 	}
-	
-	
+
+	/**
+	 * @return the createdAt
+	 */
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	/**
+	 * @param createdAt the createdAt to set
+	 */
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
 }

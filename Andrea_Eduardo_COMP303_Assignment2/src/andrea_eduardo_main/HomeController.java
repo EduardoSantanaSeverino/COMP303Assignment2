@@ -21,12 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	private SessionHelper sessionHelper = new SessionHelper();
+	private SessionHelper sessionHelper;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request)
 	{
-		
+		sessionHelper = new SessionHelper();
 		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
 		
 		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
@@ -42,11 +42,10 @@ public class HomeController {
 		view = new ModelAndView("home");
 		view.addObject("model", model);
 		view.addObject("show_orders", show_orders);
-		view.addObject("error_message", error_message);
-		view.addObject("info_message", info_message);
+		view.addObject("error_message", (error_message == "null" ? "" : error_message));
+		view.addObject("info_message", (info_message == "null" ? "" : info_message));
 		
 		return view;
 	}
-	
 	
 }

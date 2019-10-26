@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -122,10 +124,12 @@
                                                             <div class="form-group">
                                                                 <label for="productId">Select Product</label>
                                                                 <select class="form-control" id="productId" name="productId">
-                                                                    <option value="1" data-price="9" selected>Drinks \ Coca cola \ 9 CAD</option>
-																	<option value="2" data-price="16">Drinks \ Pepsi \ 16 CAD </option>
-																	<option value="3" data-price="26">Hotfood \ Pizza \ 26 CAD</option>
-                                                                    <option value="4" data-price="22">Hotfood \ Hotdogs \ 22 CAD</option>
+                                                                   
+                                                                	<c:forEach var="product" items="${products}">   
+                                                                
+	                                                                 	<option value="${product.productId}" ${(product.productId == order.productId ? "selected" : "")} data-price="${product.price}">${product.category}  >  ${product.productName}  >  ${product.price} </option>
+                                                                 	    
+																	</c:forEach>  
                                                                 </select>
 															</div>
 															

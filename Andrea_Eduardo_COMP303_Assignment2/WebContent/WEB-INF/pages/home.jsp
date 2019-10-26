@@ -115,6 +115,7 @@
 													<th scope="col">Status</th>
 													<th scope="col">Amount</th>
 													<th scope="col" style="width: 15px;"></th>
+													<th scope="col" style="width: 15px;"></th>
 												  </tr>
 												</thead>
 												<tbody>
@@ -125,7 +126,16 @@
 													   <td>${order.orderDate}</td>  
 													   <td>${order.status}</td>  
 													   <td>${order.amountPaid}</td>  
-													   <td>   <a class="btn btn-primary" href="${pageContext.request.contextPath}/edit_order.html?id=${order.orderId}">Edit</a> </td>  
+													 
+													  
+													   <td>
+													   		<form action="${pageContext.request.contextPath}/order/cancel.html?id=${order.orderId}" method="post" role="form">
+													   			<input type="submit" class="btn btn-primary" value="Cancel"/>
+													   		</form>
+													   </td>  
+													   <td>   
+													   		<a class="btn btn-primary" href="${pageContext.request.contextPath}/edit_order.html?id=${order.orderId}">Edit</a> 
+													   	</td>  
 													   </tr>  
 													</c:forEach>  
 													   

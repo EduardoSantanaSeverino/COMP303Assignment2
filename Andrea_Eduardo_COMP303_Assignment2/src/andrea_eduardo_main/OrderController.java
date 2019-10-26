@@ -3,6 +3,10 @@
  */
 package andrea_eduardo_main;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +26,7 @@ public class OrderController {
 
 	private SessionHelper sessionHelper = new SessionHelper();
 	private OrdersDao ordersDao = new OrdersDao();
+	private ProductsDao productsDao = new ProductsDao();
 	
 	@RequestMapping(value = "/order/create", method = RequestMethod.POST)
 	public ModelAndView create(
@@ -57,7 +62,7 @@ public class OrderController {
 		
 		if(isValid)
 		{
-			request.getSession().setAttribute("info_message", "Order Saved Correctly!");
+			request.getSession().setAttribute("info_message", "Confirmation message: The Order Have been Completed and Payment have been applied successfully!");
 		}
 		else
 		{
@@ -117,6 +122,60 @@ public class OrderController {
 		
 	}
 	
+	@RequestMapping(value = "/order/cancel", method = RequestMethod.POST)
+	public ModelAndView cancel(
+			@RequestParam(value = "id", required = true) int id, 
+			HttpServletRequest request)
+	{
+
+		boolean isValid = false;
+		
+		String errorMessage = "";
+		
+		Orders order = ordersDao.findOne(id);
+
+		try {
+			errorMessage = this.validateHasLessThan24Hours(order);
+			isValid = (errorMessage == "");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		if(isValid)
+		{
+			order.setStatus("Cancelled");
+			
+			order = ordersDao.update(order);
+			
+			request.getSession().setAttribute("info_message", "Order Cancelled Correctly!");
+		}
+		else
+		{
+			request.getSession().setAttribute("error_message", errorMessage);
+		}
+		
+		return new ModelAndView("redirect:/home.html", new HashMap<>());
+		
+	}
+	
+	private String validateHasLessThan24Hours(Orders order) throws ParseException
+	{
+		String retVal = "";
+		
+		Date d1 = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").parse(order.getOrderDate());  
+		Date d2 =  new Date();
+		
+		long diff = d2.getTime() - d1.getTime();
+		long diffHours = diff / (60 * 60 * 1000);
+		
+		if(diffHours >= 24)
+		{
+			retVal = "It have been more than 24 hours since this order was created, therefore you can not cancel either update it!, Total hours is:: " + String.valueOf(diffHours);
+		}
+		
+		return retVal;
+	}
+	
 	@RequestMapping(value = "/create_order", method = RequestMethod.GET)
 	public ModelAndView create_order(HttpServletRequest request)
 	{
@@ -128,21 +187,41 @@ public class OrderController {
 		}
 		view = new ModelAndView("create_order");
 		view.addObject("model", model);
+		view.addObject("products", productsDao.findAll());
 		return view;
 	}
 	
 	@RequestMapping(value = "/edit_order", method = RequestMethod.GET)
 	public ModelAndView edit_order(@RequestParam(value = "id", required = true) int id, HttpServletRequest request)
 	{
-		ModelAndView view = null;
+
+		Orders order = ordersDao.findOne(id);
+		
 		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
-		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
+		
+		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1) // Validate if is logged in
 		{
 			return new ModelAndView("redirect:/", new HashMap<>());
 		}
-		view = new ModelAndView("edit_order");
+
+		try 
+		{
+			String errorMessage = this.validateHasLessThan24Hours(order);
+			if(errorMessage != "") // Validate if the order has more than 24 hours created.
+			{
+				request.getSession().setAttribute("error_message", errorMessage);
+				return new ModelAndView("redirect:/home.html", new HashMap<>());
+			}
+		} 
+		catch (ParseException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		ModelAndView view = new ModelAndView("edit_order");
 		view.addObject("model", model);
-		view.addObject("order", ordersDao.findOne(id));
+		view.addObject("order", order);
+		view.addObject("products", productsDao.findAll());
 		return view;
 	}
 	

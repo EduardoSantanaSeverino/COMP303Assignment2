@@ -13,15 +13,18 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SessionHelper {
 
-	private OrdersDao ordersDao = new OrdersDao();
-	private CustomersDao customersDao = new CustomersDao();
+	private OrdersDao ordersDao;
+	private CustomersDao customersDao;
 
 	public SessionHelper() {
 		// TODO Auto-generated constructor stub
+		ordersDao = new OrdersDao();
+		customersDao = new CustomersDao();
 	}
 	
 	public LoggedUserViewModel getCustomerFromSession(HttpServletRequest request)
 	{
+		
 		LoggedUserViewModel retVal = new LoggedUserViewModel();
 		
 		Object objectCustomerId = request.getSession().getAttribute("customerId");
