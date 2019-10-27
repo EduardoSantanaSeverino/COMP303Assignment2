@@ -30,7 +30,7 @@ public class Orders implements Serializable {
 	private String comments;
 	private String status;
 	private int amountPaid;
-	private LocalDateTime createdAt;
+	private int orderQuantity;
 	private String credictCardNumber;
 	private String credictCardExpDate;
 	private String credictCardCode;
@@ -40,7 +40,6 @@ public class Orders implements Serializable {
 
 	public Orders() {
 		super();
-		this.setCreatedAt(LocalDateTime.now());
 	}   
 	
 	public int getOrderId() {
@@ -166,21 +165,20 @@ public class Orders implements Serializable {
 		this.credictCardExpDate = credictCardExpDate;
 		this.credictCardCode = credictCardCode;
 		this.credictCardName = credictCardName;
-		this.setCreatedAt(LocalDateTime.now());
 	}
 
 	/**
-	 * @return the createdAt
+	 * @return the orderQuantity
 	 */
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public int getOrderQuantity() {
+		return orderQuantity;
 	}
 
 	/**
-	 * @param createdAt the createdAt to set
+	 * @param orderQuantity the orderQuantity to set
 	 */
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setOrderQuantity(int orderQuantity) {
+		this.orderQuantity = orderQuantity;
 	}
 
 }

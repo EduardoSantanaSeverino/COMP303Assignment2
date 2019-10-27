@@ -119,19 +119,34 @@
 															
 															</div>
 														
-                                                            <div class="form-group">
-                                                                <label for="productId">Select Product</label>
-                                                                <select class="form-control" id="productId" name="productId">
-                                                                
-                                                                <option value="" data-price=""></option>
-	                                                                 	
-                                                                	<c:forEach var="product" items="${products}">   
-                                                                
-	                                                                 	<option value="${product.productId}" data-price="${product.price}">${product.category}  >  ${product.productName}  >  ${product.price} </option>
-                                                                 	    
-																	</c:forEach>  
+														
+														<div class="row">
+
+																<div class="col-md-6">
+																			
+		                                                            <div class="form-group">
+		                                                                <label for="productId">Select Product</label>
+		                                                                <select class="form-control" id="productId" name="productId">
+		                                                                
+		                                                                <option value="" data-price=""></option>
+			                                                                 	
+		                                                                	<c:forEach var="product" items="${products}">   
+		                                                                
+			                                                                 	<option value="${product.productId}" data-price="${product.price}">${product.category}  >  ${product.productName}  >  ${product.price} </option>
+		                                                                 	    
+																			</c:forEach>  
+																			
+		                                                                </select>
+																	</div>
 																	
-                                                                </select>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label for="orderQuantity">Order Quantity</label>
+																		<input type="text" name="orderQuantity" class="form-control orderQuantity" id="orderQuantity" value="0">
+																	</div>
+																</div>
+															
 															</div>
 															
 															<div class="form-group">
@@ -254,7 +269,6 @@
 	<script type="text/javascript">
 		$(function() {
 
-			
 			$('.next-to-checkout').click(function(e) {
 				$(".order-checkout").delay(100).fadeIn(100);
 				$(".order-product").fadeOut(100);
@@ -267,9 +281,10 @@
 				e.preventDefault();
 			});
 			
-			$( "#productId" ).change(function() {
+			$( "#productId, #orderQuantity" ).change(function() {
 			  var productPrice = $("#productId").find(':selected').data('price');
-			  $(".amountPaid").val(productPrice);
+			  var quantity = $("#orderQuantity").val();
+			  $(".amountPaid").val(parseInt(productPrice) * parseInt(quantity));
 			});
 			
 			$(".orderDate").val(getFormatedCurrentDate());

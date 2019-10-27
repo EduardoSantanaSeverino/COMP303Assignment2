@@ -121,18 +121,36 @@
 															
 															</div>
 														
-                                                            <div class="form-group">
-                                                                <label for="productId">Select Product</label>
-                                                                <select class="form-control" id="productId" name="productId">
-                                                                   
-                                                                	<c:forEach var="product" items="${products}">   
-                                                                
-	                                                                 	<option value="${product.productId}" ${(product.productId == order.productId ? "selected" : "")} data-price="${product.price}">${product.category}  >  ${product.productName}  >  ${product.price} </option>
+														<div class="row">
+
+																<div class="col-md-6">
+																			
+		                                                            <div class="form-group">
+		                                                                <label for="productId">Select Product</label>
+		                                                                <select class="form-control" id="productId" name="productId">
+		                                                                
+		                                                                <option value="" data-price=""></option>
+			                                                                 	
+		                                                                	<c:forEach var="product" items="${products}">   
+		                                                                
+			                                                                 		<option value="${product.productId}" ${(product.productId == order.productId ? "selected" : "")} data-price="${product.price}">${product.category}  >  ${product.productName}  >  ${product.price} </option>
                                                                  	    
-																	</c:forEach>  
-                                                                </select>
+																			</c:forEach>  
+																			
+		                                                                </select>
+																	</div>
+																	
+																</div>
+																<div class="col-md-6">
+																	<div class="form-group">
+																		<label for="orderQuantity">Order Quantity</label>
+																		<input type="text" name="orderQuantity" class="form-control orderQuantity" id="orderQuantity" value="${product.orderQuantity}">
+																	</div>
+																</div>
+															
 															</div>
 															
+                                                         
 															<div class="form-group">
 																<label for="color">Select Color</label>
 																<select class="form-control" id="color" name="color">
@@ -266,10 +284,11 @@
 				e.preventDefault();
 			});
 			
-			$( "#productId" ).change(function() {
-			  var productPrice = $("#productId").find(':selected').data('price');
-			  $(".amountPaid").val(productPrice);
-			});
+			$( "#productId, #orderQuantity" ).change(function() {
+				  var productPrice = $("#productId").find(':selected').data('price');
+				  var quantity = $("#orderQuantity").val();
+				  $(".amountPaid").val(parseInt(productPrice) * parseInt(quantity));
+				});
 			
 			$(".orderDate").val(getFormatedCurrentDate());
 			

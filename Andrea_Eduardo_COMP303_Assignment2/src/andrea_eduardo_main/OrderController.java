@@ -170,7 +170,7 @@ public class OrderController {
 		
 		if(diffHours >= 24)
 		{
-			retVal = "It have been more than 24 hours since this order was created, therefore you can not cancel either update it!, Total hours is:: " + String.valueOf(diffHours);
+			retVal = "It has been more than 24 hours since this order was created, therefore you can not cancel either update it!, Total hours is:: " + String.valueOf(diffHours);
 		}
 		
 		return retVal;
@@ -222,6 +222,7 @@ public class OrderController {
 		view.addObject("model", model);
 		view.addObject("order", order);
 		view.addObject("products", productsDao.findAll());
+		
 		return view;
 	}
 	

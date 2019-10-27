@@ -24,6 +24,8 @@ public class SessionHelper {
 	
 	public LoggedUserViewModel getCustomerFromSession(HttpServletRequest request)
 	{
+		ordersDao = new OrdersDao();
+		customersDao = new CustomersDao();
 		
 		LoggedUserViewModel retVal = new LoggedUserViewModel();
 		
@@ -58,6 +60,9 @@ public class SessionHelper {
 
 	public LoggedUserViewModel getLoggetUserViewModelByCustomerId(int customerId)
 	{
+		ordersDao = new OrdersDao();
+		customersDao = new CustomersDao();
+		
 		LoggedUserViewModel retVal = new LoggedUserViewModel();
 		if(customerId > 0)
 		{
