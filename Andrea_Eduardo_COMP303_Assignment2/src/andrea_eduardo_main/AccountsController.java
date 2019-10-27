@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 /**
- * @author EduardoSantana
- * Web Md
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 @Controller
 public class AccountsController {
@@ -23,6 +25,7 @@ public class AccountsController {
 	private CustomersDao customersDao = new CustomersDao();
 	private ProductsDao productsDao = new ProductsDao();
 
+	/*Method to login using the post method*/
 	@RequestMapping(value = "/accounts/login", method = RequestMethod.POST)
 	public ModelAndView login(
 			@RequestParam(value = "username", required = true) String username,
@@ -45,6 +48,7 @@ public class AccountsController {
 		
 	}
 	
+	/*Method to register using the post method*/
 	@RequestMapping(value = "/accounts/register", method = RequestMethod.POST)
 	public ModelAndView register(
 			@RequestParam(value = "username", required = true) String username,

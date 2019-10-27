@@ -15,14 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author EduardoSantana
- *
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 @Controller
 public class HomeController {
 
 	private SessionHelper sessionHelper;
 	
+	/*Method to render the home view using the get method*/
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request)
 	{

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author EduardoSantana
- *
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 @Controller
 public class OrderController {
@@ -28,6 +30,7 @@ public class OrderController {
 	private OrdersDao ordersDao = new OrdersDao();
 	private ProductsDao productsDao = new ProductsDao();
 	
+	/*Method to create order using the post method*/
 	@RequestMapping(value = "/order/create", method = RequestMethod.POST)
 	public ModelAndView create(
 			@RequestParam(value = "customerId", required = true) int customerId,
@@ -73,6 +76,7 @@ public class OrderController {
 		
 	}
 	
+	/*Method to edit order using the post method*/
 	@RequestMapping(value = "/order/edit", method = RequestMethod.POST)
 	public ModelAndView edit(
 			@RequestParam(value = "orderId", required = true) int orderId,
@@ -122,6 +126,7 @@ public class OrderController {
 		
 	}
 	
+	/*Method to cancel order using the post method*/
 	@RequestMapping(value = "/order/cancel", method = RequestMethod.POST)
 	public ModelAndView cancel(
 			@RequestParam(value = "id", required = true) int id, 
@@ -158,6 +163,7 @@ public class OrderController {
 		
 	}
 	
+	/* Private Method to validateHasLessThan24Hours*/
 	private String validateHasLessThan24Hours(Orders order) throws ParseException
 	{
 		String retVal = "";
@@ -176,6 +182,7 @@ public class OrderController {
 		return retVal;
 	}
 	
+	/*Method to render created order view using the get method */
 	@RequestMapping(value = "/create_order", method = RequestMethod.GET)
 	public ModelAndView create_order(HttpServletRequest request)
 	{
@@ -191,6 +198,7 @@ public class OrderController {
 		return view;
 	}
 	
+	/*Method to render edit order view using the get method*/
 	@RequestMapping(value = "/edit_order", method = RequestMethod.GET)
 	public ModelAndView edit_order(@RequestParam(value = "id", required = true) int id, HttpServletRequest request)
 	{

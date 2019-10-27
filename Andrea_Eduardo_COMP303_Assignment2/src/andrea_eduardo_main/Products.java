@@ -5,13 +5,10 @@ import java.lang.String;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Products
- *
- */
-/**
- * Students Names and Id's
- * Andrea de la Isla - 
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
  * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 @Entity
 public class Products implements Serializable {

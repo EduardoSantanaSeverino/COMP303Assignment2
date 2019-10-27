@@ -10,15 +10,14 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author EduardoSantana
- *
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 @Repository
 public class CustomersDao extends AbstractJpaDAO<Customers> {
 
-	/**
-	 * 
-	 */
 	public CustomersDao() {
 		super();
 		setClazz(Customers.class);

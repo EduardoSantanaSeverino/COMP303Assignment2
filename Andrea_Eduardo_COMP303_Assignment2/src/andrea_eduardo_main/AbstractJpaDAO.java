@@ -4,8 +4,10 @@
 package andrea_eduardo_main;
 
 /**
- * @author EduardoSantana
- *
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
 
 import java.io.Serializable;
@@ -16,6 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+/**
+this is an abstract class to have a generic repository. in order to not repeat code. 
+ */
 public abstract class AbstractJpaDAO<T extends Serializable> {
 
 	private static EntityManagerFactory factory;

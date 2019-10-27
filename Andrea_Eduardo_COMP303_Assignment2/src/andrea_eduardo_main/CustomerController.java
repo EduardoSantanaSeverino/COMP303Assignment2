@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author EduardoSantana
- *
+ * Students Names and Id's and Submitted date
+ * Andrea de la Isla - 301039987
+ * Eduardo Santana - 301048660
+ * Submitted Date - 2019 - 10 - 27
  */
-
 @Controller
 public class CustomerController {
 
 	private SessionHelper sessionHelper = new SessionHelper();
 	private CustomersDao customersDao = new CustomersDao();
 	
+	/*Method to edit customer using the post method*/
 	@RequestMapping(value = "/customer/edit", method = RequestMethod.POST)
 	public ModelAndView edit_customer(
 			@RequestParam(value = "customerId", required = true) int customerId,
@@ -65,6 +67,7 @@ public class CustomerController {
 		
 	}
 	
+	/*Method to render the edit customer using the post get*/
 	@RequestMapping(value = "/edit_customer", method = RequestMethod.GET)
 	public ModelAndView edit_customer(@RequestParam(value = "customerId", required = true) int customerId, HttpServletRequest request)
 	{
