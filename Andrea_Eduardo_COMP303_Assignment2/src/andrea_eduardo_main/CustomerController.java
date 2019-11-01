@@ -25,6 +25,24 @@ public class CustomerController {
 	private SessionHelper sessionHelper = new SessionHelper();
 	private CustomersDao customersDao = new CustomersDao();
 	
+	/*Method to render the edit customer using the post get*/
+	@RequestMapping(value = "/edit_customer", method = RequestMethod.GET)
+	public ModelAndView edit_customer(@RequestParam(value = "customerId", required = true) int customerId, HttpServletRequest request)
+	{
+		Customers customer = customersDao.findOne(customerId);
+		ModelAndView view = null;
+		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
+		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
+		{
+			return new ModelAndView("redirect:/", new HashMap<>());
+		}
+		view = new ModelAndView("edit_customer");
+		view.addObject("model", model);
+		view.addObject("customer", customer);
+		view.addObject("customer", customersDao.findOne(customerId));
+		return view;
+	}
+	
 	/*Method to edit customer using the post method*/
 	@RequestMapping(value = "/customer/edit", method = RequestMethod.POST)
 	public ModelAndView edit_customer(
@@ -67,21 +85,5 @@ public class CustomerController {
 		
 	}
 	
-	/*Method to render the edit customer using the post get*/
-	@RequestMapping(value = "/edit_customer", method = RequestMethod.GET)
-	public ModelAndView edit_customer(@RequestParam(value = "customerId", required = true) int customerId, HttpServletRequest request)
-	{
-		Customers customer = customersDao.findOne(customerId);
-		ModelAndView view = null;
-		LoggedUserViewModel model = sessionHelper.getCustomerFromSession(request);
-		if(model == null || model.getUser() == null || model.getUser().getCustomerId() < 1)
-		{
-			return new ModelAndView("redirect:/", new HashMap<>());
-		}
-		view = new ModelAndView("edit_customer");
-		view.addObject("model", model);
-		view.addObject("customer", customer);
-		view.addObject("customer", customersDao.findOne(customerId));
-		return view;
-	}
+	
 }
