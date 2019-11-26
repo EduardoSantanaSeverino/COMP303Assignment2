@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * Eduardo Santana - 301048660
  * Submitted Date - 2019 - 10 - 27
  */
+
 public class SessionHelper {
 
 	private OrdersDao ordersDao;

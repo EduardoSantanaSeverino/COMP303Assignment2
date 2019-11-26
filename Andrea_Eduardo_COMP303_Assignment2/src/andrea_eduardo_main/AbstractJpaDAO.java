@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
 /**
 this is an abstract class to have a generic repository. in order to not repeat code. 
  */
-public abstract class AbstractJpaDAO<T extends Serializable> {
+public abstract class AbstractJpaDAO <T extends Serializable> {
 
 	private static EntityManagerFactory factory;
 	
